@@ -36,11 +36,12 @@ class App extends React.Component {
     // });
     console.log(term);
   }
+
   render() {
     return (
       <div>
         <Search items={this.state.terms}
-          placeholder='Body part'
+          placeholder="Search"
           onItemsChanged={this.handleTermChange} />
       </div>
     );
