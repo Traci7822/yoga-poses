@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from './components/SearchBar';
-import TermList from './components/TermList';
+// import SearchBar from './components/SearchBar';
+// import TermList from './components/TermList';
 // import request from 'superagent';
 // import $ from 'jquery';
 import Search from 'react-search';
+import SearchItem from './components/SearchItem';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,11 +17,17 @@ class App extends React.Component {
         {id: 1, value: 'Shoulders'},
         {id: 2, value: 'Upper Back'},
         {id: 3, value: 'Lower Back'}
-      ]
+      ],
+      search: ""
     }
+
+    this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   handleTermChange(term) {
+    this.setState({
+      search: term
+    })
     // $.ajax({
     //   url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json',
     //   dataType: 'jsonp',
@@ -34,7 +41,6 @@ class App extends React.Component {
     // request.get(url, function(err, res) {
     //   console.log(res.body.data[0]);
     // });
-    console.log(term);
   }
 
   render() {
@@ -43,6 +49,7 @@ class App extends React.Component {
         <Search items={this.state.terms}
           placeholder="Search"
           onItemsChanged={this.handleTermChange} />
+        <SearchItem value={this.state.search}/>
       </div>
     );
   }
